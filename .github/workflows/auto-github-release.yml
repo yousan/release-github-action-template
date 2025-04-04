@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*.*.*'  # Version Tag（e.g. : v1.0.0）
+    branches:
+      - 'develop'
 
 jobs:
   release:
