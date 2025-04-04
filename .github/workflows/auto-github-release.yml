@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*.*.*'  # Version Tag（e.g. : v1.0.0）
+    branches:
+      - 'develop'
 
 jobs:
   release:
@@ -12,16 +14,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
-    - name: Set up Node.js (スキップ可、必要ならば指定)
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Build project (必要ならビルド処理を追加)
-      run: |
-        npm install
-        npm run build
 
     - name: Create GitHub Release
       id: create_release
