@@ -6,9 +6,12 @@ on:
       - 'v*.*.*'  # Version Tag（e.g. : v1.0.0）
     branches:
       - 'develop'
+<<<<<<< HEAD
+=======
 
 permissions:
   contents: write
+>>>>>>> release/v0.0.2
 
 jobs:
   release:
@@ -18,6 +21,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+<<<<<<< HEAD
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}  # Tag name（e.g. : v1.0.0）
+        release_name: ${{ github.ref }}  # release name
+        body: |
+          ## Release Notes
+          - Features
+          - Bug fixes
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./path/to/your/asset.zip
+        asset_name: asset.zip
+        asset_content_type: application/zip
+=======
       - name: Create GitHub Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -37,3 +66,4 @@ jobs:
     #         asset_path: ./path/to/your/asset.zip
     #         asset_name: asset.zip
     #         asset_content_type: application/zip
+>>>>>>> release/v0.0.2
